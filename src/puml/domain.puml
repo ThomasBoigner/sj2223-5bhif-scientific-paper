@@ -1,0 +1,25 @@
+@startuml
+
+class User <<Entity>> {
+    username: String
+    email: String
+    password: String
+}
+
+class Chat <<Entity>>{
+    name: String
+
+    members: List<User>
+    messages: List<Message>
+}
+
+class Message <<Entity>>{
+    text: String
+    chat: Chat
+    sender: User
+}
+
+User "n"--"m" Chat
+Chat "1"--"n" Message
+Message -- User
+@enduml

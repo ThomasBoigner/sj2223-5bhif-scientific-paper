@@ -1,25 +1,21 @@
 @startuml
+hide methods
 
 class User <<Entity>> {
     username: String
     email: String
     password: String
-}
 
-class Chat <<Entity>>{
-    name: String
-
-    members: List<User>
     messages: List<Message>
 }
 
-class Message <<Entity>>{
+class Message<<Entity>>{
     text: String
-    chat: Chat
-    sender: User
+    creation: LocalDateTime
+
+    user: User
 }
 
-User "n"--"m" Chat
-Chat "1"--"n" Message
-Message -- User
+User "1" *-o "n" Message
+
 @enduml

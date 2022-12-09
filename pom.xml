@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.5</version>
+        <version>3.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>at.spengergasse</groupId>
@@ -14,8 +14,8 @@
     <name>sj2223-5bhif-pos1-scientific-paper</name>
     <description>sj2223-5bhif-pos1-scientific-paper</description>
     <properties>
-        <java.version>18</java.version>
-        <spring-boot.version>2.7.5</spring-boot.version>
+        <java.version>19</java.version>
+        <spring-boot.version>3.0.0</spring-boot.version>
 
         <!--plugin versions-->
         <asciidoctor-maven-plugin.version>2.2.2</asciidoctor-maven-plugin.version>
@@ -28,10 +28,6 @@
         <!-- test dependency version -->
         <junit-jupiter.version>5.9.0</junit-jupiter.version>
 
-        <!-- Spring Security-->
-        <spring-security.version>5.3.4.RELEASE</spring-security.version>
-        <spring.version>5.2.8.RELEASE</spring.version>
-
         <!--log4j2-->
         <log4j-api.version>2.19.0</log4j-api.version>
         <log4j-core.version>2.19.0</log4j-core.version>
@@ -39,6 +35,8 @@
 
         <!--other-->
         <lombok.version>1.18.24</lombok.version>
+        <h2.version>2.1.214</h2.version>
+        <jnanoid.version>2.0.0</jnanoid.version>
     </properties>
     <dependencies>
         <!--spring boot-->
@@ -48,12 +46,8 @@
             <version>${spring-boot.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.logging.log4j</groupId>
-                    <artifactId>log4j-to-slf4j</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -70,7 +64,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
 
         <!--Spring Security-->
@@ -82,19 +82,9 @@
 
         <!--log4j2-->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>${log4j-slf4j-impl.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
 
         <!--other-->
@@ -108,16 +98,24 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
             <scope>runtime</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.aventrix.jnanoid</groupId>
+            <artifactId>jnanoid</artifactId>
+        <version>${jnanoid.version}</version>
+    </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>

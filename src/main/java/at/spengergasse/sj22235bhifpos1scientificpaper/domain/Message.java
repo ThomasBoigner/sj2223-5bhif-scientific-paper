@@ -7,8 +7,10 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -21,21 +23,31 @@ public class Message extends AbstractPersistable<Long> {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_message_user"))
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private User user;
 
     @Version
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private int version;
-
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private LocalDateTime creationTS;
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @NotNull(message = "Token must not be null!")
-    @NotBlank(message = "Token must not be blank")
     private String token;
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "text='" + text + '\'' +
+                ", creationTime=" + creationTime +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Message message)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(text, message.text) && Objects.equals(creationTime, message.creationTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), text, creationTime);
+    }
 }

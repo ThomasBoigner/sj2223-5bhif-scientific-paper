@@ -7,6 +7,7 @@ class User <<Entity>> {
     password: String
 
     messages: List<Message>
+    roles: Collection<Role>
 }
 
 class Message<<Entity>>{
@@ -16,6 +17,21 @@ class Message<<Entity>>{
     user: User
 }
 
-User "1" *-o "n" Message
+class Role<<Entity>>{
+    name: String
+
+    users: Collection<User>
+    privileges: Collection<Privilege>
+}
+
+class Privilege<<Entity>>{
+    name: String
+
+    roles: Collection<Role>
+}
+
+User "1" *-down-o "n" Message
+User "n" o-o "m" Role
+Role "n" o-down-o "m" Privilege
 
 @enduml

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+</head>
+<body>
+<header>
+    <nav>
+
+    </nav>
+</header>
+<main>
+    <h1>Dashboard</h1>
+    <ul th:each="message, messageStatus : ${messages}" th:object="${message}">
+        <li th:text="${message.getUser().getUsername() + ': ' + message.getText() + ' ' + #temporals.format(message.getCreationTime(), dateTimeFormat)}">
+            Message
+        </li>
+    </ul>
+</main>
+</body>
+</html>

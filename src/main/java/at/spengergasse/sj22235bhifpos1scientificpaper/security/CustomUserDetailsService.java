@@ -4,7 +4,6 @@ import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Privilege;
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Role;
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
 import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.UserRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +21,7 @@ import java.util.List;
 
 @Service("userDetailsService")
 @Transactional
-public class MyUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
@@ -33,7 +32,7 @@ public class MyUserDetailsService implements UserDetailsService {
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword().toLowerCase(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, getAuthorities(user.getRoles()));
     }
 

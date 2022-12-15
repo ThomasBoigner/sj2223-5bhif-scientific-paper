@@ -10,7 +10,14 @@
 <body>
 <header>
     <nav>
-
+        <ul>
+            <li><a th:href="@{/login}">login</a></li>
+            <li><a th:href="@{/registration/create}">register</a></li>
+            <li>Logged in as <span th:text="${currentUser}">user</span></li>
+            <li>
+                <a th:href="@{/perform_logout}">Logout</a>
+            </li>
+        </ul>
     </nav>
 </header>
 <main>

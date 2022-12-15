@@ -10,7 +10,8 @@
 <body>
 <main>
     <h1>Register a new User</h1>
-    <form action="/" th:object="${form}" method="Post" enctype="utf8">
+    <form th:action="@{/registration}" th:object="${form}" method="Post" enctype="utf8">
+        <div th:if="${message} != null" th:text="${message}">error</div>
         <div>
             <label>Username: </label>
             <input th:field="*{username}">
@@ -33,7 +34,7 @@
         <button type="submit">submit</button>
     </form>
 
-    <a th:href="@{/login.html}">login</a>
+    <a th:href="@{/login}">login</a>
 </main>
 </body>
 </html>

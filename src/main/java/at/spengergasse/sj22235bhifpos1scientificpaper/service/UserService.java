@@ -10,6 +10,7 @@ import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.CreateUse
 import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.error.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,7 @@ public class UserService{
     private final TokenService tokenService;
     private final TemporalValueFactory temporalValueFactory;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<User> getUsers(){
         return userRepository.findAll();
@@ -40,7 +42,7 @@ public class UserService{
         return userRepository.save(User.builder()
                         .username(form.getUsername())
                         .email(form.getEmail())
-                        .password(form.getPassword())
+                        .password(passwordEncoder.encode(form.getPassword()))
                         .messages(new ArrayList<>())
                         .token(tokenService.createNanoId())
                         .creationTS(temporalValueFactory.now())

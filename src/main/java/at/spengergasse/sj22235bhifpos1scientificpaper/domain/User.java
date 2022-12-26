@@ -5,9 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -25,7 +22,7 @@ public class User extends AbstractPersistable<Long> {
 
     @Column(unique = true)
     private String username;
-    @Email
+
     @Column(unique = true)
     private String email;
     @Column(length = 60)

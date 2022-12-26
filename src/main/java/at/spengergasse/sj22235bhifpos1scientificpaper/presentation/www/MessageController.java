@@ -7,6 +7,7 @@ import at.spengergasse.sj22235bhifpos1scientificpaper.service.MessageService;
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.UserService;
 import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.error.UserAlreadyExistException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -29,6 +29,7 @@ public class MessageController implements RedirectForwardSupport{
 
     public static final String BASE_URL = "";
     public static final String ROUTE_INDEX = "/";
+    public static final String ROUTE_CREATE = "/message/create";
 
     @ModelAttribute
     public void dateTimeFormat(Model model){
@@ -43,4 +44,14 @@ public class MessageController implements RedirectForwardSupport{
         return "dashboard";
     }
 
+    @GetMapping(ROUTE_CREATE)
+    public String showCreateForm(Model model){
+       model.addAttribute("messageForm", new NewMessageForm());
+       return "message/newMessage";
+    }
+
+    @PostMapping(ROUTE_CREATE)
+    public String createMessage(@Valid NewMessageForm messageForm, BindingResult br, Model model){
+       return redirect(BASE_URL);
+    }
 }

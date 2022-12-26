@@ -6,6 +6,7 @@ import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.error.Use
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.MessageService;
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 
 @RequiredArgsConstructor
 

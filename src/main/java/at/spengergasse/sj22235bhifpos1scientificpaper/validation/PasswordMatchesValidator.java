@@ -1,9 +1,8 @@
 package at.spengergasse.sj22235bhifpos1scientificpaper.validation;
 
+import jakarta.validation.ConstraintValidator;
 import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.CreateUserForm;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
     @Override

@@ -3,6 +3,7 @@ package at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www;
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
 import at.spengergasse.sj22235bhifpos1scientificpaper.foundation.IAuthenticationFacade;
 import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.error.UserAlreadyExistException;
+import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.forms.CreateUserForm;
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.MessageService;
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;

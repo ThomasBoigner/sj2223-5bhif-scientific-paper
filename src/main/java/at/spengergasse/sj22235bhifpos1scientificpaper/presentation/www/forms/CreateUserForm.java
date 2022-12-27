@@ -1,4 +1,4 @@
-package at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www;
+package at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.forms;
 
 import at.spengergasse.sj22235bhifpos1scientificpaper.validation.PasswordMatches;
 import at.spengergasse.sj22235bhifpos1scientificpaper.validation.ValidEmail;

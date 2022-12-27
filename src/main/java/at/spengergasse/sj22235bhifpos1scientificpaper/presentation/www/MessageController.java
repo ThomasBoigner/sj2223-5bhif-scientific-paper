@@ -1,18 +1,15 @@
 package at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www;
 
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Message;
-import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
 import at.spengergasse.sj22235bhifpos1scientificpaper.foundation.IAuthenticationFacade;
+import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.forms.NewMessageForm;
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.MessageService;
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.UserService;
-import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.error.UserAlreadyExistException;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,7 +48,12 @@ public class MessageController implements RedirectForwardSupport{
     }
 
     @PostMapping(ROUTE_CREATE)
-    public String createMessage(@Valid NewMessageForm messageForm, BindingResult br, Model model){
-       return redirect(BASE_URL);
+    public String createMessage(@Valid @ModelAttribute NewMessageForm messageForm, BindingResult br, Model model){
+        if (br.hasErrors()){
+            model.addAttribute("messageForm", messageForm);
+            return "message/newMessage";
+        }
+        messageService.createMessage(messageForm);
+        return redirect("/");
     }
 }

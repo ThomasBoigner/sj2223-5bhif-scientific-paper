@@ -1,4 +1,4 @@
-package at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www;
+package at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.forms;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

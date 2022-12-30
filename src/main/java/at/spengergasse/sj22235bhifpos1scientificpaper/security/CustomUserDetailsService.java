@@ -1,6 +1,5 @@
 package at.spengergasse.sj22235bhifpos1scientificpaper.security;
 
-import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Privilege;
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Role;
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
 import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.UserRepository;
@@ -36,28 +35,10 @@ public class CustomUserDetailsService implements UserDetailsService {
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, getAuthorities(user.getRoles()));
     }
 
-    private static Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles){
-        return getGrantedAuthorities(getPrivileges(roles));
-    }
-
-    private static List<String> getPrivileges(Collection<Role> roles) {
-        final List<String> privileges = new ArrayList<>();
-        final List<Privilege> collection = new ArrayList<>();
-
-        roles.stream().map((role) -> {
-            privileges.add(role.getName());
-            collection.addAll(role.getPrivileges());
-            return role;
-        });
-
-        collection.stream().map(privilege -> privileges.add(privilege.getName()));
-
-        return privileges;
-    }
-
-    private static Collection<? extends GrantedAuthority> getGrantedAuthorities(final List<String> privileges) {
-        final List<GrantedAuthority> authorities = new ArrayList<>();
-        privileges.stream().map(privilege -> authorities.add(new SimpleGrantedAuthority(privilege)));
+    private static List<GrantedAuthority> getAuthorities(Collection<Role> roles){
+        //return getGrantedAuthorities(getPrivileges(roles));
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        roles.stream().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
         return authorities;
     }
 }

@@ -21,17 +21,9 @@ class Role<<Entity>>{
     name: String
 
     users: Collection<User>
-    privileges: Collection<Privilege>
-}
-
-class Privilege<<Entity>>{
-    name: String
-
-    roles: Collection<Role>
 }
 
 User "1" *-down-o "n" Message
 User "n" o-o "m" Role
-Role "n" o-down-o "m" Privilege
 
 @enduml

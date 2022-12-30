@@ -1,12 +1,14 @@
 package at.spengergasse.sj22235bhifpos1scientificpaper.service;
 
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
+import at.spengergasse.sj22235bhifpos1scientificpaper.foundation.AuthenticationFacade;
 import at.spengergasse.sj22235bhifpos1scientificpaper.foundation.TemporalValueFactory;
 import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.RoleRepository;
 import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.UserRepository;
 import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.forms.CreateUserForm;
 import at.spengergasse.sj22235bhifpos1scientificpaper.presentation.www.error.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 
@@ -26,9 +29,18 @@ public class UserService{
     private final TemporalValueFactory temporalValueFactory;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationFacade authenticationFacade;
 
     public List<User> getUsers(){
         return userRepository.findAll();
+    }
+
+    public String getAuthenticatedUsername(){
+        Optional<User> user = userRepository.findUserByEmail(authenticationFacade.getAuthentication().getName())
+                .or(() -> userRepository.findUserByGoogleId(authenticationFacade.getAuthentication().getName()));
+        return  (user.isPresent()) ?
+                user.get().getUsername() :
+                "nobody";
     }
 
     @Transactional(readOnly = false)

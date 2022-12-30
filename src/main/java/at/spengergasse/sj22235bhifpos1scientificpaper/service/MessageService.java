@@ -31,7 +31,9 @@ public class MessageService {
     @Transactional(readOnly = false)
     public Message createMessage(NewMessageForm form){
         return messageRepository.save(Message.builder()
-                        .user(userRepository.findUserByEmail(authenticationFacade.getAuthentication().getName()).orElseThrow(() -> new UsernameNotFoundException("Can't find logged in user!")))
+                        .user(userRepository.findUserByEmail(authenticationFacade.getAuthentication().getName())
+                                .orElseGet(() -> userRepository.findUserByGoogleId(authenticationFacade.getAuthentication().getName())
+                                .orElseThrow(() -> new UsernameNotFoundException("Can't find logged in user!"))))
                         .text(form.getMessage())
                         .creationTime(temporalValueFactory.now())
                         .creationTS(temporalValueFactory.now())

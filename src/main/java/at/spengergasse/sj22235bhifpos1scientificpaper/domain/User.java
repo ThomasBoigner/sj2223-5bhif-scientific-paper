@@ -28,9 +28,10 @@ public class User extends AbstractPersistable<Long> {
     @Column(length = 60)
     private String password;
 
+    @Column(unique = true)
+    private String googleId;
+
     @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "user")
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private List<Message> messages;
 
     @ManyToMany(fetch = FetchType.EAGER)

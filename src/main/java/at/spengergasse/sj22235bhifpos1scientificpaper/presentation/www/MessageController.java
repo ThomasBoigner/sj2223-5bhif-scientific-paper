@@ -37,7 +37,7 @@ public class MessageController implements RedirectForwardSupport{
     public String showDashboard(Model model){
         List<Message> messages = messageService.getMessages();
         model.addAttribute("messages", messages);
-        model.addAttribute("currentUser", authenticationFacade.getAuthentication().getName());
+        model.addAttribute("currentUser", userService.getAuthenticatedUsername());
         return "dashboard";
     }
 

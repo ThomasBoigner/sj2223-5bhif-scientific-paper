@@ -1,0 +1,3 @@
+# Introduction
+
+The aim of this scientific paper is to provide an introduction to Spring Security. Spring Security has a number of features, but in this introduction we will focus on the authentication, registration and exploitation protection aspects. To show of some of these features I have written a sample Spring Security project, all of the project sources can be found over at my GitHub.

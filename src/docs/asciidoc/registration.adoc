@@ -1,1 +1,27 @@
-# Registration process
+= Registration process
+
+After we have customized our login process, we want to give our users the opportunity to create a new account. For this to work, we have to make Spring Security use the data from our database by creating a custom UserDetailsService and implement our own loadUserByUsername() methode.
+
+== CustomUserDetailsService
+
+[source, java]
+----
+include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/security/CustomUserDetailsService.java[tag=CustomUserDetailsService]
+----
+
+The loadUserByUsername method is called everytime a user tries to log in. To use the data from our database we need to fetch the user with the entered email from our database and map the attributes to a UserDetails instance. Therefor we need to get all roles of the user and convert it to a list of GrantedAuthorities. To do this I wrote a static method that takes the collection of roles from the user as an argument.
+
+== Registration Form
+For the registration we just need to define a controller that returns the registration form and saves the user to the database:
+
+[source, java]
+----
+include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/presentation/www/RegistrationController.java[tag=RegistrationController]
+----
+
+And the form that is returned by the controller:
+
+[source, html]
+----
+include::../../main/resources/templates/registration.html[lines=12..44]
+----

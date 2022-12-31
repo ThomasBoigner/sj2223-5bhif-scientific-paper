@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>at.spengergasse</groupId>
@@ -20,9 +20,9 @@
         <!--plugin versions-->
         <asciidoctor-maven-plugin.version>2.2.2</asciidoctor-maven-plugin.version>
         <!--asciidoctor-->
-        <asciidoctorj.version>2.5.5</asciidoctorj.version>
-        <asciidoctorj-pdf.version>2.0.6</asciidoctorj-pdf.version>
-        <asciidoctorj.diagram.version>2.0.0</asciidoctorj.diagram.version>
+        <asciidoctorj.version>2.5.7</asciidoctorj.version>
+        <asciidoctorj-pdf.version>2.3.4</asciidoctorj-pdf.version>
+        <asciidoctorj.diagram.version>2.2.3</asciidoctorj.diagram.version>
 
         <!--dependency version-->
         <!-- test dependency version -->
@@ -173,6 +173,9 @@
                         <configuration>
                             <backend>html</backend>
                             <sourceDirectory>src/docs/asciidoc</sourceDirectory>
+                            <requires>
+                                <require>asciidoctor-diagram</require>
+                            </requires>
                             <outputDirectory>target/generated-docs/HTML</outputDirectory>
                         </configuration>
                     </execution>
@@ -185,6 +188,9 @@
                         <configuration>
                             <backend>pdf</backend>
                             <sourceDirectory>src/docs/asciidoc</sourceDirectory>
+                            <requires>
+                                <require>asciidoctor-diagram</require>
+                            </requires>
                             <outputDirectory>target/generated-docs/PDF</outputDirectory>
                         </configuration>
                     </execution>
@@ -192,5 +198,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

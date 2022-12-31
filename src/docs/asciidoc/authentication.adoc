@@ -32,4 +32,4 @@ This form sends a http post request to /perform_login, the same endpoint we defi
 
 === Customizing the logout
 
-We can customize the endpoint a http get request has to be sent to, to log out any users with .logoutUrl() and specify the endpoint users will be redirected to with .logoutSuccessUrl(). .deleteCookies will delete the cookie that holds the session id.
+We can customize the endpoint a http get request has to be sent to, to log out any users with .logoutUrl() and specify the endpoint users will be redirected to with .logoutSuccessUrl(). .deleteCookies() will delete the cookie that holds the session id when the user logs out.

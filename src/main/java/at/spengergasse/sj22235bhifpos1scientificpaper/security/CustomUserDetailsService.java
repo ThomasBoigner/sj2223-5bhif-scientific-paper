@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+//tag::CustomUserDetailsService[]
 @RequiredArgsConstructor
 
 @Service("userDetailsService")
@@ -42,3 +43,4 @@ public class CustomUserDetailsService implements UserDetailsService {
         return authorities;
     }
 }
+//end::CustomUserDetailsService[]

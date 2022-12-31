@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @RequiredArgsConstructor
 
 @Controller
@@ -34,7 +33,7 @@ public class RegistrationController implements RedirectForwardSupport {
     public static final String ROUTE_LOGIN = "/login";
     public static final String ROUTE_REGISTRATION = "/create";
 
-
+    //tag::RegistrationController[]
     @GetMapping(ROUTE_REGISTRATION)
     public String showRegistrationForm(Model model){
         model.addAttribute("form", new CreateUserForm());
@@ -56,4 +55,6 @@ public class RegistrationController implements RedirectForwardSupport {
         }
         return redirect(ROUTE_INDEX);
     }
+    //end::RegistrationController[]
 }
+

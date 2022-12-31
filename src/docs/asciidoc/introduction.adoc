@@ -15,7 +15,7 @@ The User entity saves the username of the user, which will be displayed next to 
 == Dependencies
 For this project we will need the https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security[spring-boot-starter-security] dependency and for oAuth2 we will need https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client[spring-boot-starter-oauth2-client].
 
-[xml]
+[source, xml]
 ----
 include::../../../pom.xml[lines=84..93]
 ----

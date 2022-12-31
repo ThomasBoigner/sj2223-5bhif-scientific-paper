@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
+//tag::CustomOAuth2UserService[]
 @RequiredArgsConstructor
 
 @Service("oidcUserService")
@@ -57,3 +58,4 @@ public class CustomOAuth2UserService extends OidcUserService {
         return oidcUser;
     }
 }
+//end::CustomOAuth2UserService[]

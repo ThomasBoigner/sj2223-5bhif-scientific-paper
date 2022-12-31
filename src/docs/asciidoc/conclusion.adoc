@@ -20,3 +20,4 @@ https://www.baeldung.com/registration-with-spring-mvc-and-spring-security +
 https://www.baeldung.com/spring-security-login +
 https://spring.io/guides/gs/securing-web/ +
 https://www.baeldung.com/get-user-in-spring-security +
+https://www.baeldung.com/spring-security-5-default-password-encoder +

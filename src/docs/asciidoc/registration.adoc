@@ -1,6 +1,6 @@
 = Registration process
 
-After we have customized our login process, we want to give our users the opportunity to create a new account. For this to work, we have to make Spring Security use the data from our database by creating a custom UserDetailsService and implement our own loadUserByUsername() methode.
+After we have customized our login process, we want to give our users the opportunity to create a new account. For this to work, we have to make Spring Security use the data from our database by creating a custom UserDetailsService and implement our own loadUserByUsername() method.
 
 == CustomUserDetailsService
 
@@ -20,7 +20,7 @@ For the registration we just need to define a controller that returns the regist
 include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/presentation/www/RegistrationController.java[tag=RegistrationController]
 ----
 
-And the form that is returned by the controller:
+And the form that is the html form returned by the controller:
 
 [source, html]
 ----
@@ -29,7 +29,7 @@ include::../../main/resources/templates/registration.html[lines=12..44]
 
 == Accessing the user currently logged in
 
-With the static method SecurityContextHolder.getContext().getAuthentication() the name of the user that is currently logged in can be retrieved. We can use Spring Boots bean system to create a component that returns us the Authentication instance and use injection in another class to access it:
+With the static method SecurityContextHolder.getContext().getAuthentication() the name of the user that is currently logged in can be retrieved. We can use Spring Boots bean system to create a component that returns us the Authentication instance and use injection to access it in another class:
 
 [source, java]
 ----

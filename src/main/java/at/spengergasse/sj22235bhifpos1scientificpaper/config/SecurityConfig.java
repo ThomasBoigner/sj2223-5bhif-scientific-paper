@@ -22,9 +22,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
+            //tag::https[]
             .requiresChannel(channel -> channel
                 .anyRequest().requiresSecure()
             )
+            //end::https[]
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("", "/", "/registration/create", "/login").permitAll()
                 .anyRequest().authenticated()
@@ -57,8 +59,10 @@ public class SecurityConfig {
     }
     //end::SecurityFilterChain[]
 
+    //tag::passwordEncoder[]
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    //end::passwordEncoder[]
 }

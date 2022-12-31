@@ -15,9 +15,10 @@ public class AuthenticationController {
     public static final String ROUTE_INDEX = "/";
 
 
+    //tag::login-endpoint[]
     @GetMapping({"", ROUTE_INDEX})
     public String showLogin(){
         return "login";
     }
-
+    //end::login-endpoint[]
 }

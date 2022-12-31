@@ -18,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    //tag::SecurityFilterChain[]
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
@@ -52,6 +53,7 @@ public class SecurityConfig {
             );
         return http.build();
     }
+    //end::SecurityFilterChain[]
 
     @Bean
     public PasswordEncoder passwordEncoder() {

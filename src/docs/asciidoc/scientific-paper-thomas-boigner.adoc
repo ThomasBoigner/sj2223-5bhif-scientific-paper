@@ -3,7 +3,7 @@
 :email: BOI19439@spengergasse.at
 :revnumber: v1
 :toc: left
-:toclevels: 4
+:toclevels: 2
 :toc-title: table of contents
 
 include::introduction.adoc[leveloffset=+1]

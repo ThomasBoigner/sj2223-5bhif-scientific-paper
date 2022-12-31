@@ -5,6 +5,7 @@ class User <<Entity>> {
     username: String
     email: String
     password: String
+    googleId: String
 
     messages: List<Message>
     roles: Collection<Role>

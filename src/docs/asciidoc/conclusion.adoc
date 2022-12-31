@@ -1,1 +1,9 @@
-# Conclusion
+= Conclusion
+
+== Sources
+https://docs.spring.io/spring-security/reference/index.html +
+https://www.baeldung.com/security-spring +
+https://www.baeldung.com/registration-with-spring-mvc-and-spring-security +
+https://www.baeldung.com/spring-security-login +
+https://spring.io/guides/gs/securing-web/ +
+https://www.baeldung.com/get-user-in-spring-security +

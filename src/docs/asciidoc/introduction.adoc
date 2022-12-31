@@ -1,3 +1,21 @@
-# Introduction
+= Introduction
 
-The aim of this scientific paper is to provide an introduction to Spring Security. Spring Security has a number of features, but in this introduction we will focus on the authentication, registration and exploitation protection aspects. To show of some of these features I have written a sample Spring Security project, all of the project sources can be found over at my GitHub.
+The aim of this scientific paper is to provide an introduction to Spring Security. Spring Security has a number of features, but in this introduction we will focus on the authentication, registration and exploitation protection aspects. To show of some of these features I have written a sample Spring Security project, all the project sources can be found over on https://github.com/ThomasBoigner/sj2223-5bhif-scientific-paper/tree/development/src/main/java/at/spengergasse/sj22235bhifpos1scientificpaper[GitHub].
+
+== Goals of the project
+The project is supposed to show of the registration and authentication features of Spring Security by giving the users the possibility to log in and write a message that is displayed to all other users. Furthermore, there will be the option to log in using a Google account. This will be set up using the oAuth2 feature of Spring Security. After we have discussed this we will take a look at way to improve the safety against exploits of our web application. The application will contain a simple frontend written in Thymeleaf.
+
+Here you can see the class diagram of the domain model:
+[plantuml]
+----
+include::../../puml/domain.puml[]
+----
+The User entity saves the username of the user, which will be displayed next to all the messages the user writes, the email and password, which together will be used to authenticate the user, the googleId, if the user authenticates with a Google account and the roles, which determine the pages the user has access to.
+
+== Dependencies
+For this project we will need the https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security[spring-boot-starter-security] dependency and for oAuth2 we will need https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client[spring-boot-starter-oauth2-client].
+
+[xml]
+----
+include::../../../pom.xml[lines=84..93]
+----

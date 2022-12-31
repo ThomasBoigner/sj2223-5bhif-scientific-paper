@@ -42,6 +42,7 @@ public class SecurityConfig {
                     .logoutSuccessUrl("/")
                     .permitAll()
             )
+            //tag::oauth2Login[]
             .oauth2Login(oauth2 -> oauth2
                     .loginPage("/login")
                     .authorizationEndpoint(authorization -> authorization
@@ -51,6 +52,7 @@ public class SecurityConfig {
                             .baseUri("/login/oauth2/code/google")
                     )
             );
+            //end::oauth2Login[]
         return http.build();
     }
     //end::SecurityFilterChain[]

@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+// tag::authenticationFacade[]
 @Component
 public class AuthenticationFacade implements IAuthenticationFacade{
     @Override
@@ -11,3 +12,4 @@ public class AuthenticationFacade implements IAuthenticationFacade{
         return SecurityContextHolder.getContext().getAuthentication();
     }
 }
+//end::authenticationFacade[]

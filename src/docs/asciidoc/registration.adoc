@@ -12,6 +12,7 @@ include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/security
 The loadUserByUsername method is called everytime a user tries to log in. To use the data from our database we need to fetch the user with the entered email from our database and map the attributes to a UserDetails instance. Therefor we need to get all roles of the user and convert it to a list of GrantedAuthorities. To do this I wrote a static method that takes the collection of roles from the user as an argument.
 
 == Registration Form
+
 For the registration we just need to define a controller that returns the registration form and saves the user to the database:
 
 [source, java]
@@ -24,4 +25,13 @@ And the form that is returned by the controller:
 [source, html]
 ----
 include::../../main/resources/templates/registration.html[lines=12..44]
+----
+
+== Accessing the user currently logged in
+
+With the static method SecurityContextHolder.getContext().getAuthentication() the name of the user that is currently logged in can be retrieved. We can use Spring Boots bean system to create a component that returns us the Authentication instance and use injection in another class to access it:
+
+[source, java]
+----
+include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/foundation/AuthenticationFacade.java[tags=authenticationFacade]
 ----

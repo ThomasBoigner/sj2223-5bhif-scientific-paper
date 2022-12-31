@@ -1,1 +1,69 @@
-# Authentication with oAuth2
+= Authentication with oAuth2
+
+To give our users the option to log in using for example their Google Account, we have to add oAuth2 support to our application. To do this we will need the https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client[spring-boot-starter-oauth2-client] dependency.
+
+== Obtaining a client-id and client-secret
+
+There are multiple oAuth2 providers that can be used to authenticate users. We need to get a client-id and client-secret from one of them for our project. Here is a list of the most important providers and a link to their configuration pages.
+
+.oAuth2 providers
+|===
+| Provider | Link | Guide
+
+| Google | https://console.developers.google.com/[Google Api Console] | https://developers.google.com/identity/openid-connect/openid-connect[OpenID Connect]
+| GitHub | https://github.com/settings/applications/new[Register a new OAuth application]|
+| Facebook | https://developers.facebook.com/apps[Facebook apps] | log in -> Create New App -> Create New App ID
+| Okta | https://www.okta.com/developer/signup[create a new Okta account]| 1. create a developer account +
+2. Applications -> Add Application -> Create New App +
+Platform: Web, Sign on method OpenID Connect
+|===
+
+For our project I used Google as an oAuth2 provider. After obtaining the client-Id and client-secret we have to pass them into our application.properties:
+
+[source, properties]
+----
+spring.security.oauth2.client.registration.google.client-id=client-id
+spring.security.oauth2.client.registration.google.client-secret=client-secret
+----
+
+You have to change "client-id" and "client-secret" to the client-id and client-secret obtained in the previous step and if you don't use Google change "Google" to the provider you chose.
+
+As the final Step of the basic oAuth2 setup we have to set the redirect URI to "http://localhost:8080/login/oauth2/code/google". For the Google configuration go to credentials and then click on the pen symbol next to the name of your project, then paste the link in the input field in the section "Authorized redirect URIs" and save the settings. For the other providers this step may differ. +
+If we start the application now we can see that there is an auto generated login page with the option to log in with a Google account (If you have been following the tutorial up to that point, you have to comment the SecurityFilterChain out, otherwise it would overwrite the default oAuth2 settings).
+
+== Customize the oAuth2 login
+
+We can customize the oAuth2 configuration by adding .oauth2Login() to the SecurityFilterChain:
+
+[source, java]
+----
+include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/config/SecurityConfig.java[tags=oauth2Login]
+----
+
+We can use .loginPage() to set the oAuth2 login page to the same login page that we used earlier. +
+Then we can set the authorization endpoint with .authorizationEndpoint(). We can use this link at the login page to redirect users to the Google authentication site:
+
+[source, html]
+----
+<a href="/login/oauth2/authorization/google">Log in with Google!</a>
+----
+
+
+== CustomOAuth2UserService
+
+If we want to save the users that authenticate with oAuth2 in our database we need to create a custom OAuth2UserService.
+[source, java]
+----
+include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/security/CustomOAuth2UserService.java[tags=CustomOAuth2UserService]
+----
+
+The OidcUserService inherits from OAuth2UserService, which is quite similar to the UserDetailsService. Both load the user with a loadUser() method, but the OicdUserService uses a OidcUserRequest instead of a string to create the authentication. It also returns a OidcUser which means that SecurityContextHolder.getContext().getAuthentication() now returns the Google id instead of the name of the user. +
+In order to still be able to retrieve the user data from the currently authenticated user we save the id into the googleId attribute of the User entity and query first for the email and then for the googleId if we need the userdata. +
+But to do that we first have to save the user to the database in the processOidcUser() method. In the method we map the OidcUserRequest to an GoogleUserInfo object, because it makes it easier to process the data. Here is the code for the GoogleUser object:
+
+[source, java]
+----
+include::../../main/java/at/spengergasse/sj22235bhifpos1scientificpaper/security/GoogleUserInfo.java[tags=GoogleUserInfo]
+----
+
+We then try to find the user in the database and if it does not exist we map the GoogleUserInfo object to a User object and save it to the database. Now we are able to use the googleId field to retrieve the user object from the database and use its associated data.

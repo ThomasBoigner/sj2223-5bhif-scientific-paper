@@ -1,7 +1,17 @@
 = Conclusion
 
+Now you know the basics of Spring Security and how to register and authenticate users and protect your web application against exploits.
 
 == Good Resources
+The two main resources to learn about Spring Security are https://docs.spring.io/spring-security/reference/index.html[the office Spring Security reference documentation], which is always up-to-date and therefore the number one source for infos about Spring Security and https://www.baeldung.com/security-spring[the Spring Security guide on baeldung.com], which provides good examples of how Spring Security can be used in applications. Another place for guides on how to use Spring Security in applications are the guides on https://spring.io/guides[spring.io] where some guides feature information about Spring Security.
+
+== Further features of Spring Security
+There are some features of Spring Security that we have not discussed in this article, here are the most important ones:
+
+* Spring Security for Reactive Applications
+** In this paper we only discussed how to use Spring Security for servelet applications. Information about Spring Security for Reactive Applications can be found https://docs.spring.io/spring-security/reference/reactive/index.html[in the official documentation]
+* SAML2
+** Spring Security provides SAML2 support. If you want to authenticate your users using SAML2 information about it can be found https://docs.spring.io/spring-security/reference/servlet/saml2/index.html[in the official documentation]
 
 == Sources
 https://docs.spring.io/spring-security/reference/index.html +

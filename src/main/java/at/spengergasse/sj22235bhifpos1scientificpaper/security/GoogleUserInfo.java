@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.util.Map;
 
+//tag::GoogleUserInfo[]
 @Data
 @AllArgsConstructor
 @Builder
@@ -26,3 +27,4 @@ public class GoogleUserInfo {
         return (String) attributes.get("email");
     }
 }
+//end::GoogleUserInfo[]

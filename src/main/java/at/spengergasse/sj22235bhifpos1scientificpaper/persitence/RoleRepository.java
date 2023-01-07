@@ -1,4 +1,4 @@
-package at.spengergasse.sj22235bhifpos1scientificpaper.persitance;
+package at.spengergasse.sj22235bhifpos1scientificpaper.persitence;
 
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

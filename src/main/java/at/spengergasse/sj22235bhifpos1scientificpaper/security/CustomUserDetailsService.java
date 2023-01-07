@@ -2,7 +2,7 @@ package at.spengergasse.sj22235bhifpos1scientificpaper.security;
 
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Role;
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
-import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.UserRepository;
+import at.spengergasse.sj22235bhifpos1scientificpaper.persitence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

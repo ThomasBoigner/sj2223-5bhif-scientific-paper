@@ -2,8 +2,8 @@ package at.spengergasse.sj22235bhifpos1scientificpaper.security;
 
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
 import at.spengergasse.sj22235bhifpos1scientificpaper.foundation.TemporalValueFactory;
-import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.RoleRepository;
-import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.UserRepository;
+import at.spengergasse.sj22235bhifpos1scientificpaper.persitence.RoleRepository;
+import at.spengergasse.sj22235bhifpos1scientificpaper.persitence.UserRepository;
 import at.spengergasse.sj22235bhifpos1scientificpaper.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;

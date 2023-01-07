@@ -2,11 +2,9 @@ package at.spengergasse.sj22235bhifpos1scientificpaper.config;
 
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.Message;
 import at.spengergasse.sj22235bhifpos1scientificpaper.domain.User;
-import at.spengergasse.sj22235bhifpos1scientificpaper.persitance.MessageRepository;
-import lombok.AllArgsConstructor;
+import at.spengergasse.sj22235bhifpos1scientificpaper.persitence.MessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
